@@ -1,0 +1,13 @@
+{% set content %}
+
+    <h1>Field Guide</h1>
+
+	{% include 'fieldguide/_content' %}
+
+{% endset %} 
+
+{% extends "fieldguide/_layout" %}
+
+{% set title = "FieldGuide Dashboard" %}
+
+{% set selectedTab = 'dashboard' %}

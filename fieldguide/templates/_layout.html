@@ -1,0 +1,8 @@
+{% extends '_layouts/cp' %}
+
+{% includeCssResource "fieldguide/styles.css" %}
+{# {% includeJsResource "casper/script.js" %} #}
+
+{% set tabs = {
+    dashboard:     { label: "Dashboard"|t, url: url('field-guide/') },
+} %}
