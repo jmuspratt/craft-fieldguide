@@ -9,5 +9,5 @@ TO DO
 
 - Add Matrix sub-field listings.
 
-To install, drag the `fieldguide` directory to `craft/plugins`. Visit Dashboard → *Gear Icon* → **+New Widget** → Choose Field Guide Widget form the pop-up menu. The widget just contains a link to the Field Guide page.
+To install, drag the `fieldguide` directory to `craft/plugins`. First activate the plugin under Settings →  Plugins. Then visit Dashboard → *Gear Icon* → **+New Widget** → Choose Field Guide Widget form the pop-up menu. The widget just contains a link to the Field Guide page.
 
