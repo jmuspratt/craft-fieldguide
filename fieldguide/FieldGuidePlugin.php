@@ -23,4 +23,11 @@ class FieldGuidePlugin extends BasePlugin
 	{
 		return 'http://jamesmuspratt.com';
 	}
+	
+    public function hasCpSection()
+    {
+        return true;
+    }
+
+	
 }
