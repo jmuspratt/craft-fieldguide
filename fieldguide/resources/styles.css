@@ -24,6 +24,6 @@ code {font:monospace;}
 table.field-table { margin-bottom:25px; background:#eee; }
 	
 	
-.field-table td {min-width:200px; font-weight:normal; padding:8px 5px;}
+.field-table td {min-width:200px; font-weight:normal; padding:8px 5px; border-bottom:1px solid #fff;}
 
 .field-table tr.sub-fields {background:#e5e5e5;}
