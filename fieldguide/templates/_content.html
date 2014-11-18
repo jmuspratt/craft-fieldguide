@@ -16,7 +16,7 @@
 				{% set field_id =  field_obj.fieldId %}
 				{% set field = field_obj.getField(field_id) %}
 				<tr>
-					<td>{{ field.name }}</td> <td><code>{{ field.handle }}</code></td> <td>{{ field.type }}</td>	</tr>
+					<td>{{ field.name }}</td> <td><code>{{ field.handle }}</code></td> <td>{{ field.type }}</td> <td>{{field.instructions}}</td></tr>
 					{# {% if field.type == "Matrix" %} 
 					<tr class="sub-fields">
 					{% set block_types =  craft.matrix.getBlockTypesByFieldId(field_id) %}
