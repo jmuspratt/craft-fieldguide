@@ -12,21 +12,25 @@
 			<h4 class="entry-type">Entry Type: <code>{{entry_type}}</code></h4>
 			{% set fields = entry_type.getFieldLayout(entry_type).getFields() %}
 			<table class="field-table">
+				<thead>
+					<th>Name</th> <th>Handle</th> <th>Type</th> <th>Instructions</th>
+					</thead>
+				<tbody>
 				{% for field_obj in fields %}
 				{% set field_id =  field_obj.fieldId %}
 				{% set field = field_obj.getField(field_id) %}
-				<tr>
-					<td>{{ field.name }}</td> <td><code>{{ field.handle }}</code></td> <td>{{ field.type }}</td> <td>{{field.instructions}}</td></tr>
+			
+					<tr><td>{{ field.name }}</td> <td><code>{{ field.handle }}</code></td> <td>{{ field.type }}</td> <td>{{field.instructions}}</td></tr>
 					{# {% if field.type == "Matrix" %} 
 					<tr class="sub-fields">
 					{% set block_types =  craft.matrix.getBlockTypesByFieldId(field_id) %}
 					{# <td>{{dump(field_id) }}</td> 
 					</tr>
-						
 					{% endif %}
 					#}
 					
 					{% endfor %}
+				</tbody>
 				</table>
 			</li>
 	
