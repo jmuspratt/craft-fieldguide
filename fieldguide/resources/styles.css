@@ -2,31 +2,35 @@ code {font:monospace;}
 
 
 .section {
-	margin-bottom:20px;
-	
+    margin-bottom:20px;
+
 }
 .section-name {
-	font-size:20px;
-	font-weight:normal;
-	margin: 0 0 15px 0;
+    font-size:20px;
+    font-weight:normal;
+    margin: 0 0 15px 0;
 }
 .section-name .handle {
-	font-size:13px;
-	color:#999;
-	font-weight:normal;
+    font-size:13px;
+    color:#999;
+    font-weight:normal;
 }
 
 
 .entry-type-group {margin:0 0 10px 0;}
 .entry-type {font-weight:normal; }
 .entry-type code { color:#3483f6;}
-	
+
 table.field-table { margin-bottom:25px; background:#eee; }
 
 
 .field-table td, .field-table th {vertical-align:top; text-align:left; min-width:200px; font-weight:normal; padding:10px; border-bottom:1px solid #fff; font-size:12px; line-height:1.75;}
 
-.field-table th {background:#eee; font-weight:bold; color:#000; background:#fff;}	
+.field-table th {background:#eee; font-weight:bold; color:#000; background:#fff;}
 
 
 .field-table tr.sub-fields {background:#e5e5e5;}
+.field-table tr.sub-fields td:first-child {padding-left:2em;}
+
+.field-table tr.sub-sub-fields {background:#e5e5e5;}
+.field-table tr.sub-sub-fields td:first-child {padding-left:4em;}
