@@ -7,7 +7,7 @@ Field Guide outputs a page in your Dashboard that lists all your sections and th
 TO DO
 -----
 
-- Add Matrix sub-field listings.
+~~- Add Matrix sub-field listings.~~
 
 To install, drag the `fieldguide` directory to `craft/plugins`. Activate the plugin under Settings →  Plugins. A new tab titled Field Guide should appear in the control panel.
 

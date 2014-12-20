@@ -1,10 +1,10 @@
 
 {% set sections = craft.sections.getAllSections() %}
-	
+
 {% for section in sections %}
 <div class="section">
 	<h2 class="section-name">{{ section.name }} <span class="handle">{{ section.handle }}</span></h2>
-		
+
 	{% set entry_types = section.entryTypes %}
 	<ul class="entry-types">
 		{% for entry_type in entry_types %}
@@ -13,27 +13,48 @@
 			{% set fields = entry_type.getFieldLayout(entry_type).getFields() %}
 			<table class="field-table">
 				<thead>
-					<th>Name</th> <th>Handle</th> <th>Type</th> <th>Instructions</th>
-					</thead>
+					<th scope="col">Name</th>
+					<th scope="col">Handle</th>
+					<th scope="col">Type</th>
+					<th scope="col">Instructions</th>
+				</thead>
 				<tbody>
 				{% for field_obj in fields %}
 				{% set field_id =  field_obj.fieldId %}
 				{% set field = field_obj.getField(field_id) %}
-			
-					<tr><td>{{ field.name }}</td> <td><code>{{ field.handle }}</code></td> <td>{{ field.type }}</td> <td>{{field.instructions}}</td></tr>
-					{# {% if field.type == "Matrix" %} 
-					<tr class="sub-fields">
-					{% set block_types =  craft.matrix.getBlockTypesByFieldId(field_id) %}
-					{# <td>{{dump(field_id) }}</td> 
+
+					<tr>
+						<td>{{ field.name }}</td>
+						<td><code>{{ field.handle }}</code></td>
+						<td>{{ field.type }}</td>
+						<td>{{field.instructions}}</td>
 					</tr>
+					{% if field.type == "Matrix" %}
+						{% set blockTypes = craft.fieldguide.getBlockTypes(field.id) %}
+						{% for blockType in blockTypes %}
+							<tr class="sub-fields">
+								<td>{{ blockType.name }}</td>
+								<td><code>{{ blockType.handle }}</code></td>
+								<td>Matrix Block Type</td>
+								<td></td>
+							</tr>
+							{% for subField in blockType.fields %}
+								<tr class="sub-sub-fields">
+									<td>{{ subField.name }}</td>
+									<td><code>{{ subField.handle }}</code></td>
+									<td>{{ subField.type }}</td>
+									<td>{{subField.instructions}}</td>
+								</tr>
+							{% endfor %}
+						{% endfor %}
 					{% endif %}
-					#}
-					
+
+
 					{% endfor %}
 				</tbody>
 				</table>
 			</li>
-	
+
 			{% endfor %}
 		</ul>
 	</div>
