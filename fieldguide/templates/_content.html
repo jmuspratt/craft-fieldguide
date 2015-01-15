@@ -27,7 +27,7 @@
 						<td>{{ field.name }}</td>
 						<td><code>{{ field.handle }}</code></td>
 						<td>{{ field.type }}</td>
-						<td>{{field.instructions}}</td>
+						<td>{{field.instructions | markdown}}</td>
 					</tr>
 					{% if field.type == "Matrix" %}
 						{% set blockTypes = craft.fieldguide.getBlockTypes(field.id) %}
@@ -43,7 +43,7 @@
 									<td>{{ subField.name }}</td>
 									<td><code>{{ subField.handle }}</code></td>
 									<td>{{ subField.type }}</td>
-									<td>{{subField.instructions}}</td>
+									<td>{{subField.instructions | markdown}}</td>
 								</tr>
 							{% endfor %}
 						{% endfor %}
