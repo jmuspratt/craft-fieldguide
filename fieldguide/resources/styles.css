@@ -16,14 +16,14 @@ code {font:monospace;}
 }
 
 
-.entry-type-group {margin:0 0 10px 0;}
-.entry-type {font-weight:normal; }
-.entry-type code { color:#3483f6;}
+.entry-type-group 	{margin:0 0 20px 0;}
+.entry-type 		{font-weight:normal; margin: 0;}
+.entry-type code 	{ color:#3483f6;}
 
-table.field-table { margin-bottom:25px; background:#eee; }
+table.field-table { margin-bottom:25px; background:#eee; width:100%; }
 
 
-.field-table td, .field-table th {vertical-align:top; text-align:left; min-width:200px; font-weight:normal; padding:10px; border-bottom:1px solid #fff; font-size:12px; line-height:1.75;}
+.field-table td, .field-table th {vertical-align:top; text-align:left; min-width:150px; font-weight:normal; padding:7px 12px 6px 12px; border-bottom:1px solid #fff; font-size:12px; line-height:1.75;}
 
 .field-table th {background:#eee; font-weight:bold; color:#000; background:#fff;}
 
