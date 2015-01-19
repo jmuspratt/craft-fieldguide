@@ -2,12 +2,8 @@
 
 ![Field Guide screenshot](screenshot.png)
 
-Field Guide outputs a page in your Dashboard that lists all your sections and the fields attached to them. Keep it open while you write your templates!
-
-TO DO
------
-
-~~- Add Matrix sub-field listings.~~
+Using Craft CMS? Field Guide adds a tab to your Dashboard that lists all your fields in a single page, _grouped by section_. Keep it open while you write your templates!
 
 To install, drag the `fieldguide` directory to `craft/plugins`. Activate the plugin under Settings →  Plugins. A new tab titled Field Guide should appear in the control panel.
 
+Many thanks to [Daniel Ott](http://github.com/danielott) for his significant improvements.
