@@ -20,7 +20,7 @@ code {font:monospace;}
 .entry-type 		{font-weight:normal; margin: 0;}
 .entry-type code 	{ color:#3483f6;}
 
-table.field-table { margin-bottom:25px; background:#eee; width:100%; }
+table.field-table { margin-bottom:25px; background:#eee; width:100%; table-layout: fixed; }
 
 
 .field-table td, .field-table th {vertical-align:top; text-align:left; min-width:150px; font-weight:normal; padding:7px 12px 6px 12px; border-bottom:1px solid #fff; font-size:12px; line-height:1.75;}
