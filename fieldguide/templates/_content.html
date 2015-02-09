@@ -1,61 +1,101 @@
-
-{% set sections = craft.sections.getAllSections() %}
 {% set adminUrl = craft.config.baseCpUrl ~ '/' ~ craft.config.cpTrigger %}
+{% set sections = craft.sections.getAllSections() %}
 {% for section in sections %}
-<div class="section">
-	<h2 class="section-name">{{ section.name }} <a href="{{adminUrl}}/settings/sections/{{section.id}}" class="handle">{{ section.handle }}</a></h2>
-
-	{% set entry_types = section.entryTypes %}
-	<ul class="entry-types">
-		{% for entry_type in entry_types %}
-		<li class="entry-type-group">
-			<h4 class="entry-type">Entry Type: <a href="{{adminUrl}}/settings/sections/{{section.id}}/entrytypes/{{entry_type.id}}">{{entry_type}}</a></h4>
-			{% set fields = entry_type.getFieldLayout(entry_type).getFields() %}
-			<table class="field-table">
-				<thead>
-					<th scope="col">Name</th>
-					<th scope="col">Handle</th>
-					<th scope="col">Type</th>
-					<th scope="col">Instructions</th>
-				</thead>
-				<tbody>
-				{% for field_obj in fields %}
-				{% set field_id =  field_obj.fieldId %}
-				{% set field = field_obj.getField(field_id) %}
-
-					<tr>
-						<td><a href="{{adminUrl}}/settings/fields/edit/{{ field.id }}">{{ field.name }}</a></td>
-						<td><code>{{ field.handle }}</code></td>
-						<td>{{ field.type }}</td>
-						<td>{{field.instructions | markdown}}</td>
-					</tr>
-					{% if field.type == "Matrix" %}
-						{% set blockTypes = craft.fieldguide.getBlockTypes(field.id) %}
-						{% for blockType in blockTypes %}
-							<tr class="sub-fields">
-								<td>{{ blockType.name }}</td>
-								<td><code>{{ blockType.handle }}</code></td>
-								<td>Matrix Block Type</td>
-								<td></td>
-							</tr>
-							{% for subField in blockType.fields %}
-								<tr class="sub-sub-fields">
-									<td>{{ subField.name }}</td>
-									<td><code>{{ subField.handle }}</code></td>
-									<td>{{ subField.type }}</td>
-									<td>{{subField.instructions | markdown}}</td>
+	<div class="section">
+		<h2 class="section-name">{{ section.name }} <a href="{{adminUrl}}/settings/sections/{{section.id}}" class="handle">{{ section.handle }}</a></h2>
+		{% set entry_types = section.entryTypes %}
+		<ul class="entry-types">
+			{% for entry_type in entry_types %}
+				<li class="entry-type-group">
+					<h4 class="entry-type">Entry Type: <a href="{{adminUrl}}/settings/sections/{{section.id}}/entrytypes/{{entry_type.id}}">{{entry_type}}</a></h4>
+					{% set fields = entry_type.getFieldLayout(entry_type).getFields() %}
+					<table class="field-table">
+						<thead>
+							<th scope="col">Name</th>
+							<th scope="col">Handle</th>
+							<th scope="col">Type</th>
+							<th scope="col">Instructions</th>
+						</thead>
+						<tbody>
+							{% for field_obj in fields %}
+								{% set field_id =  field_obj.fieldId %}
+								{% set field = field_obj.getField(field_id) %}
+								<tr>
+									<td><a href="{{adminUrl}}/settings/fields/edit/{{ field.id }}">{{ field.name }}</a></td>
+									<td><code>{{ field.handle }}</code></td>
+									<td>{{ field.type }}</td>
+									<td>{{field.instructions | markdown}}</td>
 								</tr>
+								{% if field.type == "Matrix" %}
+									{% set blockTypes = craft.fieldguide.getBlockTypes(field.id) %}
+									{% for blockType in blockTypes %}
+										<tr class="sub-fields">
+											<td>{{ blockType.name }}</td>
+											<td><code>{{ blockType.handle }}</code></td>
+											<td>Matrix Block Type</td>
+											<td></td>
+										</tr>
+										{% for subField in blockType.fields %}
+											<tr class="sub-sub-fields">
+												<td>{{ subField.name }}</td>
+												<td><code>{{ subField.handle }}</code></td>
+												<td>{{ subField.type }}</td>
+												<td>{{subField.instructions | markdown}}</td>
+											</tr>
+										{% endfor %}
+									{% endfor %}
+								{% endif %}
 							{% endfor %}
-						{% endfor %}
-					{% endif %}
-
-
-					{% endfor %}
-				</tbody>
-				</table>
-			</li>
-
+						</tbody>
+					</table>
+				</li>
 			{% endfor %}
 		</ul>
 	</div>
-	{% endfor %}
+{% endfor %}
+<div class="section">
+	<h2 class="section-name">{{ "Unused Fields"|t }}</h2>
+	<h4 class="entry-type">Fields not used on any Field Layout (including EntryTypes, Users, CategoryGroups, TagGroups, AssetSources, MatrixBlocks, or GlobalSets)</h4>
+	<table class="field-table">
+		<thead>
+			<th scope="col">Name</th>
+			<th scope="col">Handle</th>
+			<th scope="col">Type</th>
+			<th scope="col">Instructions</th>
+		</thead>
+		<tbody>
+			{% set fields = [] %}
+			{% set unusedFieldIds = craft.fieldguide.unusedFieldIds %}
+			{% for fieldId in unusedFieldIds %}
+				{% set fields = fields|merge([craft.fields.getFieldById(fieldId)]) %}
+			{% endfor %}
+			{% for field in fields %}
+				<tr>
+					<td><a href="{{adminUrl}}/settings/fields/edit/{{ field.id }}">{{ field.name }}</a></td>
+					<td><code>{{ field.handle }}</code></td>
+					<td>{{ field.type }}</td>
+					<td>{{field.instructions | markdown}}</td>
+				</tr>
+				{% if field.type == "Matrix" %}
+					{% set blockTypes = craft.fieldguide.getBlockTypes(field.id) %}
+					{% for blockType in blockTypes %}
+						<tr class="sub-fields">
+							<td>{{ blockType.name }}</td>
+							<td><code>{{ blockType.handle }}</code></td>
+							<td>Matrix Block Type</td>
+							<td></td>
+						</tr>
+						{% for subField in blockType.fields %}
+							<tr class="sub-sub-fields">
+								<td>{{ subField.name }}</td>
+								<td><code>{{ subField.handle }}</code></td>
+								<td>{{ subField.type }}</td>
+								<td>{{subField.instructions | markdown}}</td>
+							</tr>
+						{% endfor %}
+					{% endfor %}
+				{% endif %}
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
