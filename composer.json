@@ -1,0 +1,13 @@
+{
+    "name": "jmuspratt/craft-fieldguide",
+    "authors": [
+        {
+            "name": "James Muspratt",
+            "email": "james@jamesmuspratt.com"
+        }
+    ],
+    "type": "craft-plugin",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
