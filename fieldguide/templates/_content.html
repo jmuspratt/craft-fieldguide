@@ -1,5 +1,6 @@
 {% set adminUrl = craft.config.baseCpUrl ~ '/' ~ craft.config.cpTrigger %}
 {% set sections = craft.sections.getAllSections() %}
+{% set hasTranslations = (craft.i18n.getSiteLocaleIds()|length > 1) %}
 {% for section in sections %}
 	<div class="section">
 		<h2 class="section-name">{{ section.name }} <a href="{{adminUrl}}/settings/sections/{{section.id}}" class="handle">{{ section.handle }}</a></h2>
@@ -13,6 +14,7 @@
 						<thead>
 							<th scope="col">Name</th>
 							<th scope="col">Handle</th>
+							{% if hasTranslations %}<th scope="col">Translatable</th>{% endif %}
 							<th scope="col">Type</th>
 							<th scope="col">Instructions</th>
 						</thead>
@@ -23,6 +25,7 @@
 								<tr>
 									<td><a href="{{adminUrl}}/settings/fields/edit/{{ field.id }}">{{ field.name }}</a></td>
 									<td><code>{{ field.handle }}</code></td>
+							        {% if hasTranslations %}<td>{{ field.translatable ? 'Yes' : '&nbsp;' }}</td>{% endif %}
 									<td>{{ field.type }}</td>
 									<td>{{field.instructions | markdown}}</td>
 								</tr>
@@ -32,6 +35,7 @@
 										<tr class="sub-fields">
 											<td>{{ blockType.name }}</td>
 											<td><code>{{ blockType.handle }}</code></td>
+        							        {% if hasTranslations %}<td>{{ field.translatable ? '<small>Yes</small>' : '&nbsp;' }}</td>{% endif %}
 											<td>Matrix Block Type</td>
 											<td></td>
 										</tr>
@@ -39,6 +43,7 @@
 											<tr class="sub-sub-fields">
 												<td>{{ subField.name }}</td>
 												<td><code>{{ subField.handle }}</code></td>
+            							        {% if hasTranslations %}<td>{{ field.translatable ? '<small>Yes</small>' : '&nbsp;' }}</td>{% endif %}
 												<td>{{ subField.type }}</td>
 												<td>{{subField.instructions | markdown}}</td>
 											</tr>
@@ -60,6 +65,7 @@
 		<thead>
 			<th scope="col">Name</th>
 			<th scope="col">Handle</th>
+            {% if hasTranslations %}<th scope="col">Translatable</th>{% endif %}
 			<th scope="col">Type</th>
 			<th scope="col">Instructions</th>
 		</thead>
@@ -73,6 +79,7 @@
 				<tr>
 					<td><a href="{{adminUrl}}/settings/fields/edit/{{ field.id }}">{{ field.name }}</a></td>
 					<td><code>{{ field.handle }}</code></td>
+                    {% if hasTranslations %}<td>{{ field.translatable ? '<small>Yes</small>' : '&nbsp;' }}</td>{% endif %}
 					<td>{{ field.type }}</td>
 					<td>{{field.instructions | markdown}}</td>
 				</tr>
@@ -82,6 +89,7 @@
 						<tr class="sub-fields">
 							<td>{{ blockType.name }}</td>
 							<td><code>{{ blockType.handle }}</code></td>
+                            {% if hasTranslations %}<td>{{ field.translatable ? '<small>Yes</small>' : '&nbsp;' }}</td>{% endif %}
 							<td>Matrix Block Type</td>
 							<td></td>
 						</tr>
@@ -89,6 +97,7 @@
 							<tr class="sub-sub-fields">
 								<td>{{ subField.name }}</td>
 								<td><code>{{ subField.handle }}</code></td>
+                                {% if hasTranslations %}<td>{{ field.translatable ? '<small>Yes</small>' : '&nbsp;' }}</td>{% endif %}
 								<td>{{ subField.type }}</td>
 								<td>{{subField.instructions | markdown}}</td>
 							</tr>
