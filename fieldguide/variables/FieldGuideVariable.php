@@ -26,9 +26,9 @@ class FieldGuideVariable {
 		// all field ids
 		$query = craft()->db->createCommand();
 		$allFieldIds = $query
-			->select('craft_fields.id')
+			->select('id')
 			->from('fields')
-			->order('craft_fields.id')
+			->order('id')
 			->queryAll();
 		$allFieldIds = self::array_flatten($allFieldIds);
 		
@@ -36,9 +36,9 @@ class FieldGuideVariable {
 		$query = craft()->db->createCommand();
 		$query->distinct = true;
 		$usedFieldIds = $query
-			->select('craft_fieldlayoutfields.fieldId')
+			->select('fieldId')
 			->from('fieldlayoutfields')
-			->order('craft_fieldlayoutfields.fieldId')
+			->order('fieldId')
 			->queryAll();
 		$usedFieldIds = self::array_flatten($usedFieldIds);
 		
